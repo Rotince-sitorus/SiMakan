@@ -1,12 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\OrderController;
 
-// Route ke halaman SiMakan yang sudah kita buat
-Route::get('/simakan', function () {
-    return view('simakan');
-});
-
+Route::get('/', [MenuController::class, 'index']);
+Route::get('/menu', [MenuController::class, 'index']);
+Route::post('/order', [OrderController::class, 'store']);
+Route::get('/orders', [OrderController::class, 'index']);
