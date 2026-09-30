@@ -7,6 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    public function updateStatus(Request $request, $id)
+{
+    DB::table('orders')->where('id', $id)->update([
+        'status' => $request->status,
+        'updated_at' => now(),
+    ]);
+    return redirect('/orders');
+}
     public function store(Request $request)
     {
         $orderCode = 'ORD' . strtoupper(uniqid());
